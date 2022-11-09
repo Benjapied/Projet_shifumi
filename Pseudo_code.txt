@@ -1,0 +1,34 @@
+-----Fonctions-----
+
+On créer une fonction pour initialiser le nom du joueur et les points (Init)
+    On met dans une variable le nombre de point du joueur
+    Et le nombre de point du bot
+    On met le nom du joueur
+
+On créer une fonction round qu'on va appeler à chaque round du Bo (round)
+    On va donc définir le signe du joueur qu'on va placer dans une variable via une entrée utilisateur 
+    Mettre dans une variable de bot son signe via un choix aléatoire d'un entier entre 0,1,2 
+    On appelle la fonction qui vérifie le résultat du duel 
+
+On créer une fonction qui va vérifier quel joueur a gagné le point (check)
+    Si le joueur a fait pierre et le bot ciseaux OU si le joueur a fait ciseaux et le bot papier OU si le joueur a fait papier et le bot pierre
+        Alors, le joueur gagne 1 point et on lui indique qu'il a gagné
+    Si le joueur a fait ciseaux et le bot pierre OU si le joueur a fait papier et le bot ciseaux OU si le joueur a fait pierre et le bot papier
+        Alors, le bot gagne 1 point et on lui indique qu'il a gagné
+    Sinon 
+        Il y a égalité, on indique au joueur égalité
+
+On crée la fonciton du jeu (game)
+    On appelle la fonction d'initialisation 
+    Tant que les points du joueur OU les points du bot sont inférieurs à 5 
+        On appelle la fonction round 
+
+-----Code principal-----
+
+On créer une liste pour répertorier les différents signes : Pierre, Papier, Ciseaux
+
+On indique au joueur qu'il faut presser une touche pour commencer
+
+Boucle infinie
+    Si la touuche de début est appuyée
+        Alors on lance la fonction du jeu (game)
