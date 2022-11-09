@@ -7,7 +7,8 @@ On créer une fonction pour initialiser le nom du joueur et les points (Init)
 
 On créer une fonction round qu'on va appeler à chaque round du Bo (round)
     On va donc définir le signe du joueur qu'on va placer dans une variable via une entrée utilisateur 
-    Mettre dans une variable de bot son signe via un choix aléatoire d'un entier entre 0,1,2 
+    On met dans une variable un nombre aléatoire entre 0 et 2 pour définir le signe du bot via une fonction random qu'on admet
+    On affecte à la variable du bot son signe en fonction de son nombre aléaroire
     On appelle la fonction qui vérifie le résultat du duel 
 
 On créer une fonction qui va vérifier quel joueur a gagné le point (check)
