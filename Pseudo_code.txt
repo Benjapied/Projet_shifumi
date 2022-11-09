@@ -1,28 +1,28 @@
 -----Fonctions-----
 
 On créer une fonction pour initialiser le nom du joueur et les points (Init)
-    On met dans une variable le nombre de point du joueur
-    Et le nombre de point du bot
-    On met le nom du joueur
+    On met dans une variable le nombre de point du joueur (par défaut à 0)
+    On met dans une variable le nombre de point du bot (par défaut à 0)
+    On met le nom du joueur dans une variable via une entrée utilisateur 
 
-On créer une fonction round qu'on va appeler à chaque round du Bo (round)
-    On va donc définir le signe du joueur qu'on va placer dans une variable via une entrée utilisateur 
-    On met dans une variable un nombre aléatoire entre 0 et 2 pour définir le signe du bot via une fonction random qu'on admet
-    On affecte à la variable du bot son signe en fonction de son nombre aléaroire
-    On appelle la fonction qui vérifie le résultat du duel 
-
-On créer une fonction qui va vérifier quel joueur a gagné le point (check)
+On créer une fonction qui va vérifier quel joueur a gagné la manche (check)
     Si le joueur a fait pierre et le bot ciseaux OU si le joueur a fait ciseaux et le bot papier OU si le joueur a fait papier et le bot pierre
-        Alors, le joueur gagne 1 point et on lui indique qu'il a gagné
+        Alors, le joueur gagne 1 point et on lui affiche qu'il a gagné la manche avec son nom concaténé dedans
     Si le joueur a fait ciseaux et le bot pierre OU si le joueur a fait papier et le bot ciseaux OU si le joueur a fait pierre et le bot papier
         Alors, le bot gagne 1 point et on lui indique qu'il a gagné
     Sinon 
         Il y a égalité, on indique au joueur égalité
 
+On créer une fonction round qu'on va appeler à chaque round du Bo (round)
+    On va donc définir le signe du joueur qu'on va placer dans une variable via une entrée utilisateur 
+    On met dans une variable un nombre aléatoire entre 0 et 2 pour définir le signe du bot via une fonction random qu'on admet
+    On affecte à la variable du bot son signe en fonction de son nombre aléaroire
+    On appelle la fonction qui vérifie le résultat du duel (la fonction check)
+
 On crée la fonciton du jeu (game)
-    On appelle la fonction d'initialisation 
-    Tant que les points du joueur OU les points du bot sont inférieurs à 5 
-        On appelle la fonction round 
+    On appelle la fonction d'initialisation (la fonction Init)
+    Tant que les points du joueur OU les points du bot sont strictement inférieurs à 4
+        Alors on appelle la fonction round
 
 -----Code principal-----
 
@@ -31,5 +31,10 @@ On créer une liste pour répertorier les différents signes : Pierre, Papier, C
 On indique au joueur qu'il faut presser une touche pour commencer
 
 Boucle infinie
-    Si la touuche de début est appuyée
-        Alors on lance la fonction du jeu (game)
+    Si la touche de début est appuyée
+        Alors on lance la fonction du jeu (game)*
+
+        Si la variable des points du joueur est égal à 3
+            Alors on affiche que le joueur a gagné avec son nom concaténé dedans 
+        Si le bot a 3 points
+            Alors on affiche que c'est le bot qui gagne 
