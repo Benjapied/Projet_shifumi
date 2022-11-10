@@ -1,40 +1,49 @@
+DEBUT
+-----Librairies-----
+
+On admet une fonction random qui choisis un nombre aléatoire
+On admet une fonction input entrée utilisateur 
+
 -----Fonctions-----
 
 On créer une fonction pour initialiser le nom du joueur et les points (Init)
-    On met dans une variable le nombre de point du joueur (par défaut à 0)
-    On met dans une variable le nombre de point du bot (par défaut à 0)
-    On met le nom du joueur dans une variable via une entrée utilisateur 
+    On met dans la variable player_pts le nombre de point du joueur (par défaut à 0)
+    On met dans la variable bot_pts le nombre de point du bot (par défaut à 0)
+    On met dans la variable player_name le nom du joueur via un input (entrée utilisateur)
 
-On créer une fonction qui va vérifier quel joueur a gagné la manche (check)
-    Si le joueur a fait pierre et le bot ciseaux OU si le joueur a fait ciseaux et le bot papier OU si le joueur a fait papier et le bot pierre
+On créer la fonction check qui va vérifier quel joueur a gagné la manche 
+    Si player_sign est égal à pierre et bot_sign est égal à ciseaux OU si player_sign est égal ciseaux et bot_sign est égal à papier OU si player_sign est égal papier et bot_sign est égal à pierre
         Alors, le joueur gagne 1 point et on lui affiche qu'il a gagné la manche avec son nom concaténé dedans
-    Si le joueur a fait ciseaux et le bot pierre OU si le joueur a fait papier et le bot ciseaux OU si le joueur a fait pierre et le bot papier
-        Alors, le bot gagne 1 point et on lui indique qu'il a gagné
+    Si player_sign est égal à ciseaux et bot_sign est égal pierre OU si player_sign est égal à papier et bot_sign est égal ciseaux OU si player_sign est égal à pierre et bot_sign est égal papier
+        Alors, on ajoute 1 à la variable bot_pts, le bot gagne 1 point 
+        On affiche que le bot gagne 1 point 
     Sinon 
-        Il y a égalité, on indique au joueur égalité
+        Il y a égalité, on affiche au joueur égalité et aucun point n'est attribué
 
-On créer une fonction round qu'on va appeler à chaque round du Bo (round)
-    On va donc définir le signe du joueur qu'on va placer dans une variable via une entrée utilisateur 
-    On met dans une variable un nombre aléatoire entre 0 et 2 pour définir le signe du bot via une fonction random qu'on admet
-    On affecte à la variable du bot son signe en fonction de son nombre aléaroire
-    On appelle la fonction qui vérifie le résultat du duel (la fonction check)
+On créer la fonction round round qu'on va appeler à chaque round du Bo 
+    On va définit le signe du joueur dans la variable player_sign via un input (entrée utilisateur) 
+    On met dans une variable temp un nombre aléatoire entre 0 et 2 pour définir le signe du bot via la fonction random
+    On affecte à la variable bot_sign l'element de L d'incide temp, donc son signe en fonction de son nombre aléaroire
+    On appelle la fonction la fonction check 
 
-On crée la fonciton du jeu (game)
-    On appelle la fonction d'initialisation (la fonction Init)
-    Tant que les points du joueur OU les points du bot sont strictement inférieurs à 4
+On crée la fonciton game qui va faire le déroulement du jeu
+    On appelle la fonction Init pour mettre en place le round
+    Tant que joueur_pts OU bot_pts sont strictement inférieurs à 4
         Alors on appelle la fonction round
 
 -----Code principal-----
 
-On créer une liste pour répertorier les différents signes : Pierre, Papier, Ciseaux
+On créer une liste L pour répertorier les différents signes : Pierre, Papier, Ciseaux
 
-On indique au joueur qu'il faut presser une touche pour commencer
+On affiche au joueur qu'il faut presser la touche entrer pour commencer
 
-Boucle infinie
-    Si la touche de début est appuyée
-        Alors on lance la fonction du jeu (game)*
-
-        Si la variable des points du joueur est égal à 3
+Tant que vrai (boucle infinie)
+    Si la touche entrer est appuyée
+        Alors on lance la fonction game
+        
+        Si la variable player_pts est égal à 3
             Alors on affiche que le joueur a gagné avec son nom concaténé dedans 
-        Si le bot a 3 points
+        Si la variable bot_pts est égal à 3 points
             Alors on affiche que c'est le bot qui gagne 
+           
+FIN
