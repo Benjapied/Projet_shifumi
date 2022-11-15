@@ -20,6 +20,7 @@ class joueur (object) :
     self.signe = signes
     
   def retour_signe(self):
+    """Méthode qui retourn le signe du joueur pour l'implanter dans des variables"""
     return self.signe
 
   def afficher_pts(self):
@@ -35,10 +36,12 @@ class joueur (object) :
     return self.point 
 
 class verif (object) :
+  """Cette classe va prendre deux signes et les comparer pour savoir qui a gagné"""
   def __init__(self,signe):
     self.signe = signe
 
   def afficher_signe(self):
+    """On affiche le signe du joueur objet"""
     print(self.signe)
     
   def check (self,signe2):
@@ -59,6 +62,7 @@ class verif (object) :
       return "je ne comprend pas"
       
   def gestion_erreur(self):
+    """Méthode qui permet de vérifier si le signe entré par le joueur est valide"""
     signe1 = self.signe
     if signe1 == "Pierre" or signe1 == "Papier" or signe1 == "Ciseaux" :
       return True
@@ -81,12 +85,15 @@ joueur_1.afficher_pts()
 joueur_2.afficher_pts()
 
 while joueur_1.retourne_pts() <= 3 or joueur_2.retourne_pts() <= 3:
+#Tant que les points du joueur ou du bot sont inferieur à 3
   signe_j1 = input("Choisissez un signe: ")
   joueur_1.pose_signe(signe_j1)
   signe1 = verif(str(joueur_1.retour_signe()))
   joueur_1.montrer_signe()
+  #On va initialiser le signe du joueur 1 et la mettre dans la variable joueur1
   
   if signe1.gestion_erreur() == True :
+  #Si le signe du joueur 1 est valide
     joueur_2.pose_signe_random(signes)
     signe_2 = joueur_2.retour_signe()
     signe2 = verif(signe_2)
@@ -94,6 +101,7 @@ while joueur_1.retourne_pts() <= 3 or joueur_2.retourne_pts() <= 3:
     joueur_2.montrer_signe()
     signe2.gestion_erreur()
     
+    #On va check quel joueur emporte la manche
     if signe1.check(signe_2) == True :
       joueur_1.ajout_point()
     elif signe1.check(signe_2) == False :
@@ -109,3 +117,4 @@ while joueur_1.retourne_pts() <= 3 or joueur_2.retourne_pts() <= 3:
   elif joueur_2.retourne_pts() == 3:
     print("Bravo, joueur 2 gagne")
     break
+
