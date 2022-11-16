@@ -1,120 +1,53 @@
-from random import choice
+import random as r
+#Pierre Feuille Ciseaux
 
-class joueur (object) :
-  """Cette classe permet de creer un joueur qui a un nom, un signe pas encore défini et un nombre de point"""
-  def __init__(self,id,nom,signe,point):
-    self.id = id
-    self.nom = nom
-    self.point = point
-    self.signe = signe
-    
-  def ajout_point(self):
-    self.point = self.point + 1
-    
-  def pose_signe_random (self, signes) :
-    """Choisis un signe parmi la liste deja existante"""
-    self.signe = choice(signes)
-    
-  def pose_signe (self, signes) :
-    """Choisis un signe à partir du paramètre"""
-    self.signe = signes
-    
-  def retour_signe(self):
-    """Méthode qui retourn le signe du joueur pour l'implanter dans des variables"""
-    return self.signe
+shifumi = ["Pierre", "Feuille", "Ciseaux"]
+name = ''
 
-  def afficher_pts(self):
-    print(self.nom,"a",self.point,"points")
-    
-  def afficher_joueur(self):
-    print("Le joueur",self.id," s'appelle",self.nom,"il a",self.point,"points")
-    
-  def montrer_signe(self):
-    print(self.nom,"joue le signe",self.signe)
 
-  def retourne_pts(self):
-    return self.point 
+def round():
+  player_choice = input("Choisissez un signe: ")
+  bot = r.choice(shifumi)
+  return check(player_choice, bot)
 
-class verif (object) :
-  """Cette classe va prendre deux signes et les comparer pour savoir qui a gagné"""
-  def __init__(self,signe):
-    self.signe = signe
 
-  def afficher_signe(self):
-    """On affiche le signe du joueur objet"""
-    print(self.signe)
-    
-  def check (self,signe2):
-    if self.signe == "Pierre" and signe2 == "Ciseaux" :
-      """joueur_1.ajout_point()"""
-      return True
-    elif self.signe == "Pierre" and signe2 == "Papier" :
-      return False
-    elif self.signe == "Papier" and signe2 == "Pierre" :
-      return True
-    elif self.signe == "Papier" and signe2 == "Ciseaux" :
-      return False
-    elif self.signe == "Ciseaux" and signe2 == "Papier" :
-      return True 
-    elif self.signe == "Ciseaux" and signe2 == "Pierre" :
-      return False
-    else:
-      return "je ne comprend pas"
-      
-  def gestion_erreur(self):
-    """Méthode qui permet de vérifier si le signe entré par le joueur est valide"""
-    signe1 = self.signe
-    if signe1 == "Pierre" or signe1 == "Papier" or signe1 == "Ciseaux" :
-      return True
-    else :
-      print("Veuillez entrer un signe valide")
-      signe1 = None
-      return False
+def check(player_choice, bot):
+  #Cette fonction va vérifier quel joueur a gagné le point et si il y a égalité
+  if player_choice == "Pierre" and bot == "Ciseaux" or player_choice == "Ciseaux" and bot == "Feuille" or player_choice == "Feuille" and bot == "Pierre":
+    #On va voir si le joueur prend le point sur le bot et si c'est le cas on va incrémenter ses points de 1
+    print(name + " a gagné")
+    #On return 2 pour indiqer à qui il fau ajouter les points 
+    return 2
+  elif player_choice == "Ciseaux" and bot == "Pierre" or player_choice == "Feuille" and bot == "Ciseaux" or player_choice == "Pierre" and bot == "Feuille":
+    #A l'inverse, si le bot gagne la manche contre le joueur,on incrémente ses points de 1
+    print("Le bot a gagné la manche")
+    #On return 1 pour indiqer à qui il fau ajouter les points 
+    return 1
+  elif player_choice == "Ciseaux" and bot == "Ciseaux" or player_choice == "Feuille" and bot == "Feuille" or player_choice == "Pierre" and bot == "Pierre":
+    print("Egalité :/")
+  else:
+    print("Signe invalide")
 
-#main program
-signes = ["Pierre", "Papier", "Ciseaux"]
 
-joueur_1 = joueur("1","Pablo","None",0)
-joueur_2 = joueur("2","René","None",0)
+def game():
+  #Cette fonction va lancer une game en BO5
+  #Je l'ai mise en format fonction pour
+  bot_pts = 0
+  player_pts = 0
+  global name
+  name = input("Entrez votre nom de dieu du shifumi: ")
+  while bot_pts < 3 and player_pts < 3:
+    temp = round()
+    if temp == 1:
+      bot_pts = bot_pts + 1
+    elif temp == 2:
+      player_pts = player_pts + 1
+    print("Le bot a "+ str(bot_pts) + "pts")
+    print(name+ "a" +str(player_pts) + "pts")
+  if bot_pts == 3:
+    print("Le bot a gagné")
+  else:
+    print(name + " a gagné")
 
-joueur_1.afficher_joueur()
-joueur_2.afficher_joueur()
-print("\n")
 
-joueur_1.afficher_pts()
-joueur_2.afficher_pts()
-
-while joueur_1.retourne_pts() <= 3 or joueur_2.retourne_pts() <= 3:
-#Tant que les points du joueur ou du bot sont inferieur à 3
-  signe_j1 = input("Choisissez un signe: ")
-  joueur_1.pose_signe(signe_j1)
-  signe1 = verif(str(joueur_1.retour_signe()))
-  joueur_1.montrer_signe()
-  #On va initialiser le signe du joueur 1 et la mettre dans la variable joueur1
-  
-  if signe1.gestion_erreur() == True :
-  #Si le signe du joueur 1 est valide
-    joueur_2.pose_signe_random(signes)
-    signe_2 = joueur_2.retour_signe()
-    signe2 = verif(signe_2)
-    
-    joueur_2.montrer_signe()
-    signe2.gestion_erreur()
-    
-    #On va check quel joueur emporte la manche
-    if signe1.check(signe_2) == True :
-      joueur_1.ajout_point()
-    elif signe1.check(signe_2) == False :
-      joueur_2.ajout_point()
-    
-    joueur_1.afficher_pts()
-    joueur_2.afficher_pts()
-    print("\n")
-
-  if joueur_1.retourne_pts() == 3:
-    print("Bravo, joueur 1 gagne")
-    break
-  elif joueur_2.retourne_pts() == 3:
-    print("Bravo, joueur 2 gagne")
-    break
-
+game()
