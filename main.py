@@ -42,12 +42,12 @@ def game():
       bot_pts = bot_pts + 1
     elif temp == 2:
       player_pts = player_pts + 1
-    print("Le bot a "+ str(bot_pts) + "pts")
-    print(name+ "a" +str(player_pts) + "pts")
+    print("Le bot a "+ str(bot_pts) + " pts")
+    print(name+ " a " +str(player_pts) + " pts")
   if bot_pts == 3:
-    print("Le bot a gagné")
+    print("Le bot a gagné le jeu")
   else:
-    print(name + " a gagné")
+    print(name + " a gagné le jeu")
 
 
 game()
